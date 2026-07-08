@@ -1,11 +1,20 @@
 {
   "name": "project-3",
+  "private": "true",
   "version": "1.0.0",
+  "workspaces": [
+    "backend",
+    "frontend-client",
+    "frontend-partner"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:backend": "npm run dev --workspace=backend",
+    "dev:client": "npm run dev --workspace=frontend-client",
+    "dev:partner": "npm run dev --workspace=frontend-partner"
+  },
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
