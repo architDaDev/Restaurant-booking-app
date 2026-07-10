@@ -33,8 +33,9 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth.route.js';
-import restaurantRoutes from './routes/restaurant.route.js'; //Importing restaurant routes
+import restaurantRoutes from './routes/restaurant.route.js';
 import bookingRoutes from './routes/booking.routes.js';
+import reviewRoutes from './routes/review.route.js';
 
 const app = express();
 
@@ -44,8 +45,9 @@ app.use(cookieParser());
 
 // Mount Core REST Routes
 app.use('/api/v1/auth', authRoutes);
-app.use('/api/v1/restaurants', restaurantRoutes); // 2. Mount restaurant endpoints
+app.use('/api/v1/restaurants', restaurantRoutes);
 app.use('/api/v1/bookings', bookingRoutes)
+app.use('/api/v1/reviews', reviewRoutes);
 
 app.get('/', (req, res) => {
   res.status(200).json({ status: 'success', message: 'Welcome to the Restaurant Booking System API Engine' });
