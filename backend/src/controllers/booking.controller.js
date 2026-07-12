@@ -81,3 +81,24 @@ export const getPartnerDashboardBookings = async (req, res) => {
     res.status(400).json({ status: 'fail', message: error.message });
   }
 };
+/** 
+* @desc    Get bookings for the logged-in customer's personal history
+* @route   GET /api/v1/bookings/my-reservations
+* @access  Private (Customer Only)
+*/
+export const getCustomerBookings = async (req, res) => {
+  try {
+    // Find all bookings matching this customer's ID and populate the restaurant info
+    const bookings = await Booking.find({ customerId: req.user.id })
+      .populate('restaurantId', 'name address cuisineType')
+      .sort('-bookingDate'); // Show newest reservations first
+
+    res.status(200).json({
+      status: 'success',
+      results: bookings.length,
+      data: bookings
+    });
+  } catch (error) {
+    res.status(400).json({ status: 'fail', message: error.message });
+  }
+};

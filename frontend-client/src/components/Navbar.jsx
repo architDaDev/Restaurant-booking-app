@@ -14,6 +14,9 @@ export default function Navbar() {
         <div className="flex items-center gap-6">
           {user ? (
             <>
+            <Link to="/bookings" className="text-sm font-medium text-slate-600 hover:text-brand transition-colors">
+        My Bookings
+      </Link>
               <span className="text-sm font-medium text-slate-600">
                 Hi, <span className="font-semibold text-slate-900">{user.name}</span>
               </span>
