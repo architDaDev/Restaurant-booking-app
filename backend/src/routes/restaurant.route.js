@@ -15,6 +15,6 @@ router.get('/:id', getRestaurantById);
 
 // Protected/Authorized Routes (Only available to registered restaurant owners)
 router.post('/', protect, authorize('restaurant_owner'), createRestaurant);
-router.post('/menu', protect, authorize('restaurant_owner'), addMenuItem);
+router.post('/:id/menu', protect, authorize('restaurant_owner'), addMenuItem);
 
 export default router;
