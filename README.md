@@ -136,13 +136,10 @@ npm install
 
 ### Environment Variables
 
-Create a `.env` file inside `backend/` (it's git-ignored) with the following:
+The backend needs a `.env` file inside `backend/` (this is git-ignored and should **never** be committed). A template is provided at `backend/.env.example` — copy it and fill in your own values:
 
-```env
-PORT=5080
-NODE_ENV=development
-MONGO_URI=mongodb://localhost:27017/restaurant-booking
-JWT_SECRET=your_long_random_secret_string
+```bash
+cp backend/.env.example backend/.env
 ```
 
 | Variable | Required | Description |
@@ -151,6 +148,8 @@ JWT_SECRET=your_long_random_secret_string
 | `NODE_ENV` | Recommended | `development` or `production` — toggles the `secure` flag on the auth cookie |
 | `MONGO_URI` | **Yes** | MongoDB connection string |
 | `JWT_SECRET` | **Yes** | Secret used to sign/verify JWTs |
+
+> **Security note:** Don't put real credentials in `.env.example`, in this README, or anywhere else in the repo. For local development, generate your own `JWT_SECRET` (e.g. `openssl rand -base64 32`) and use your own MongoDB URI. When deploying, set these as environment variables/secrets directly in your hosting provider's dashboard (Render, Railway, Vercel, etc.) rather than in any file that gets committed — and use a different `JWT_SECRET` and database for production than for local development.
 
 ### Running the App
 
